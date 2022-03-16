@@ -124,6 +124,10 @@ func addNodes(graph *simple.DirectedGraph, operators []operator.Operator) error 
 // connectNodes will connect the nodes in the supplied graph.
 func connectNodes(graph *simple.DirectedGraph) error {
 	nodes := graph.Nodes()
+	fmt.Printf("nodes length %+v\n", nodes.Len())
+	if nodes.Len() <= 1 {
+		return nil
+	}
 	for nodes.Next() {
 		node := nodes.Node().(OperatorNode)
 		if err := connectNode(graph, node); err != nil {
